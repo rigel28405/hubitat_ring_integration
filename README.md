@@ -1,4 +1,6 @@
-**Notice!!!** 
+# Hubitat Ring Integration (Unofficial) #
+
+**Notice!!!**
 
 First and foremost I need to warn any who venture to use this integration.  This integration is provided for fun without hope of warranty or safety or stable or permanent use. Ring are not official partners with Hubitat or myself and all of the interactions between the Hubitat hub and Ring's cloud servers in this integration are via the private API calls that Ring does not publish or give permission to use for this purpose. I wrote this integration for fun and I do not trust it with my safety. It's a hobby project. (That said, it is well built and mostly stable. On the hubitat side the hub slows down sometimes and drops the websocket connection but there is a watchdog that starts it back up.)
 
@@ -6,7 +8,7 @@ If some part of this integration does not work now or stops working in the futur
 
 If that sounds okay then continue onwards...
 
-I don't expect this to be a perfect experience because I'm not providing a lot of direction and I don't have documented very well which drivers go to which devices beyond the names of the drivers and files. And they have A LOT of devices. 
+I don't expect this to be a perfect experience because I'm not providing a lot of direction and I don't have documented very well which drivers go to which devices beyond the names of the drivers and files. And they have A LOT of devices.
 
 Everyone should start by installing the app.  From there, there are two types of devices; devices that communicate via classic HTTP calls and devices that communicate via websockets.  It roughly breaks down like this:
 
@@ -21,7 +23,7 @@ The app can interact directly with the non-websocket devices. The driver for the
         websocket                cameras/chimes/doorbells
           device
         /                \
-     security          beams 
+     security          beams
      devices          devices
 
 
@@ -31,10 +33,10 @@ I also added the ability for each light device to poll for its light status.  I 
 
 You do NOT need to install all of the device drivers in this repository.  You should be able to get away with installing the drivers for just the devices you own and have registered.  Here are the device to driver mappings roughly:
 
-**The app**
+## The app ##
 - [unofficial-ring-connect.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/apps/unofficial-ring-connect.groovy) - Required for all.  (does authentication and communication)
 
-**Children of the app**
+## Children of the app ##
 - [ring-api-virtual-device.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-api-virtual-device.groovy) - This is the "Ring API Virtual Device" or websocket device. Required if you have a Ring Alarm hub or a Ring Beams (Smart Lighting) bridge
 - [ring-virtual-chime.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-chime.groovy) - Chime or Chime Pro
 - [ring-virtual-light-with-siren.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-light-with-siren.groovy) - Floodlight Cam, Spotlight Cam
@@ -42,9 +44,9 @@ You do NOT need to install all of the device drivers in this repository.  You sh
 - [ring-virtual-camera-with-siren.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-camera-with-siren.groovy) - Indoor Cam, Stick Up Cam
 - [ring-virtual-camera.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-camera.groovy) - Doorbells
 
-**Children of the Ring API Virtual Device (websocket device)**
+## Children of the Ring API Virtual Device (websocket device) ##
 
-[u]Ring Alarm[/u]
+### Ring Alarm ###
 - [ring-virtual-alarm-hub.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-alarm-hub.groovy) - Ring Alarm Hub.  Required to create alarm devices
 - [ring-virtual-alarm-range-extender.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-alarm-range-extender.groovy) - Range Extender (1st and 2nd Gen)
 - [ring-virtual-alarm-smoke-co-listener.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-alarm-smoke-co-listener.groovy) - Smoke/CO2 Listener
@@ -59,30 +61,25 @@ You do NOT need to install all of the device drivers in this repository.  You sh
 - [ring-virtual-co-alarm.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-co-alarm.groovy) Any Z-Wave (First Alert) CO detector that connects to Ring Alarm.  Note that these devices typically show as different devices on the Ring side so they show as different devices on the Hubitat side as well
 - [ring-virtual-retrofit-alarm-kit.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-keypad.groovy) - Ring Retrofit Alarm Kit
 
-[u]Ring Security Lighting (Ring Bridge/Beams)[/u]
+### Ring Security Lighting (Ring Bridge/Beams) ###
 - [ring-virtual-beams-bridge.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-beams-bridge.groovy) - Smart Lighting (Beams) bridge.  Required to create security lighting devices
 - [ring-virtual-beams-group.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-beams-group.groovy) - Smart Lighting Group
 - [ring-virtual-beams-light.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-beams-light.groovy) - Smart Lighting Light with Motion Sensor
 - [ring-virtual-beams-motion-sensor.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-beams-motion-sensor.groovy) - Smart Lighting Motion Sensor
 
-The app will create the camera, chime and doorbell devices automatically.  However, because it was far easier the security and beams devices are NOT created automatically via the app's discover devices functionality.  Once you add the "Ring API Virtual Device" from the app you must go and click "Create Devices" on your respective device to get its websocket children device(s) to create.  For example, if you have alarm devices go to the alarm hub device's edit page and click the "Create Devices" command. 
+The app will create the camera, chime and doorbell devices automatically.  However, because it was far easier the security and beams devices are NOT created automatically via the app's discover devices functionality.  Once you add the "Ring API Virtual Device" from the app you must go and click "Create Devices" on your respective device to get its websocket children device(s) to create.  For example, if you have alarm devices go to the alarm hub device's edit page and click the "Create Devices" command.
 
-**Brief Installation Instructions (*[u]*IF YOU ONLY READ ONE THING LET IT BE THIS SECTION*[/u]*)**
+## Brief Installation Instructions (**IF YOU ONLY READ ONE THING LET IT BE THIS SECTION**) ##
 - Go to github.com via the links above and install the custom app code.  (Install custom apps using the "Apps Code" link in the left navigation of the Hubitat hub.)
 - Also on github.com get the code for all of the devices you need using the list above.  If you have alarm or security lighting devices you also need the "Ring API Virtual Device" driver.  (Install custom drivers using the "Drivers Code" link in the left navigation of the Hubitat hub.)
 - Create an instance of the app. (Create instances of custom apps using the "Apps" link in the left navigation of the Hubitat hub.)
 - Authenticate to Ring in the app by giving it your Ring credentials and choose your location.
 - Click the "Discover Devices" link in the app.  If you have alarm or security devices be sure to also pick to install the "Ring Virtual API Device".  The app will create any devices you select here for you.
-- **[u]You won't get motion or ring notifications or events on cameras and doorbells until you configure them.[/u]**  There are instructions in the app to set them up under the "Configure the way that Hubitat will get motion alert and ring events" link.  **It is highly recommended to use IFTTT for notifications.**  You can poll for events but it is often unreliable.
+- **You won't get motion or ring notifications or events on cameras and doorbells until you configure them.**  There are instructions in the app to set them up under the "Configure the way that Hubitat will get motion alert and ring events" link.  **It is highly recommended to use IFTTT for notifications.**  You can poll for events but it is often unreliable.
 - You are done if you do not have alarm or security lighting devices.
 - If you have alarm or security lighting devices you will need to go to the "Ring Virtual API Device" and make sure it is connected by looking at its current state for websocket.
 - If it isn't connected, hit the "Initialize" command button
 - If it is connected, the API device should have up to two children devices already created.  If you have alarm devices, the alarm hub should be created.  If you have security lighting devices the beams bridge should be created.  Go to each of these devices and click its "Create Devices" command button.  This will automatically create the alarm and security devices.
 - At no point should you create a device yourself.  The only thing you need to create is the app instance.  The app and API device create everything else.
 
-IF YOU NEED SUPPORT DO NOT OPEN AN ISSUE ON GITHUB.  Issues are for code problems aka bugs.  If you have a support issue please make a post here in [this](https://community.hubitat.com/t/release-ring-integration/26423) thread.
-
 I will try to keep the latest changes marked via the "solution" functionality in Discourse.
-
-The repository:
-https://github.com/codahq/ring_hubitat_codahq
