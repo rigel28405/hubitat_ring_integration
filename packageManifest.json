@@ -10,8 +10,9 @@
       "name": "Unofficial Ring Connect",
       "namespace": "ring-hubitat-codahq",
       "location": "https://raw.githubusercontent.com/ardichoke/hubitat_ring_integration/master/src/apps/unofficial-ring-connect.groovy",
-      "required": false,
+      "required": true,
       "oauth": false
+    }
   ],
   "drivers": [
     {
