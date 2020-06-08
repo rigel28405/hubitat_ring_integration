@@ -1,3 +1,11 @@
 {
-  "author": "codahq"
+  "author": "codahq",
+  "packages": [
+    {
+      "name": "Hubitat Ring",
+      "category": "Integrations",
+      "location": "https://raw.githubusercontent.com/ardichoke/hubitat_ring_integration/master/packageManifest.json",
+      "description": "Unofficial Ring integration for Hubitat"
+    }
+  ]
 }
