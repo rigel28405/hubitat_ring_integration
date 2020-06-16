@@ -70,8 +70,18 @@ You do NOT need to install all of the device drivers in this repository.  You sh
 The app will create the camera, chime and doorbell devices automatically.  However, because it was far easier the security and beams devices are NOT created automatically via the app's discover devices functionality.  Once you add the "Ring API Virtual Device" from the app you must go and click "Create Devices" on your respective device to get its websocket children device(s) to create.  For example, if you have alarm devices go to the alarm hub device's edit page and click the "Create Devices" command.
 
 ## Brief Installation Instructions (**IF YOU ONLY READ ONE THING LET IT BE THIS SECTION**) ##
+The packages can be installed either manually or through the Hubitat Package Manager.
+
+### Using Hubitat Package Manager ###
+- Make sure Hubitat Package Manager is installed and working. See https://github.com/dcmeglio/hubitat-packagemanager
+- This package can be found in the Integrations section, or you can install by URL using this link: https://raw.githubusercontent.com/ardichoke/hubitat_ring_integration/master/packageManifest.json
+- Make sure to select the optional device drivers that you will need when prompted
+
+### Manual Install ###
 - Go to github.com via the links above and install the custom app code.  (Install custom apps using the "Apps Code" link in the left navigation of the Hubitat hub.)
 - Also on github.com get the code for all of the devices you need using the list above.  If you have alarm or security lighting devices you also need the "Ring API Virtual Device" driver.  (Install custom drivers using the "Drivers Code" link in the left navigation of the Hubitat hub.)
+
+### Configuration ###
 - Create an instance of the app. (Create instances of custom apps using the "Apps" link in the left navigation of the Hubitat hub.)
 - Authenticate to Ring in the app by giving it your Ring credentials and choose your location.
 - Click the "Discover Devices" link in the app.  If you have alarm or security devices be sure to also pick to install the "Ring Virtual API Device".  The app will create any devices you select here for you.
@@ -81,5 +91,3 @@ The app will create the camera, chime and doorbell devices automatically.  Howev
 - If it isn't connected, hit the "Initialize" command button
 - If it is connected, the API device should have up to two children devices already created.  If you have alarm devices, the alarm hub should be created.  If you have security lighting devices the beams bridge should be created.  Go to each of these devices and click its "Create Devices" command button.  This will automatically create the alarm and security devices.
 - At no point should you create a device yourself.  The only thing you need to create is the app instance.  The app and API device create everything else.
-
-I will try to keep the latest changes marked via the "solution" functionality in Discourse.
