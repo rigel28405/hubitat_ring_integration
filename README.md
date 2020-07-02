@@ -34,38 +34,38 @@ I also added the ability for each light device to poll for its light status.  I 
 You do NOT need to install all of the device drivers in this repository.  You should be able to get away with installing the drivers for just the devices you own and have registered.  Here are the device to driver mappings roughly:
 
 ## The app ##
-- [unofficial-ring-connect.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/apps/unofficial-ring-connect.groovy) - Required for all.  (does authentication and communication)
+- [unofficial-ring-connect.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/apps/unofficial-ring-connect.groovy) - Required for all.  (does authentication and communication)
 
 ## Children of the app ##
-- [ring-api-virtual-device.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-api-virtual-device.groovy) - This is the "Ring API Virtual Device" or websocket device. Required if you have a Ring Alarm hub or a Ring Beams (Smart Lighting) bridge
-- [ring-virtual-chime.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-chime.groovy) - Chime or Chime Pro
-- [ring-virtual-light-with-siren.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-light-with-siren.groovy) - Floodlight Cam, Spotlight Cam
-- [ring-virtual-light.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-light.groovy) - Spotlight Cam Battery (A few devices where the siren call is different and I haven't reverse engineered it yet.)
-- [ring-virtual-camera-with-siren.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-camera-with-siren.groovy) - Indoor Cam, Stick Up Cam
-- [ring-virtual-camera.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-camera.groovy) - Doorbells
+- [ring-api-virtual-device.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-api-virtual-device.groovy) - This is the "Ring API Virtual Device" or websocket device. Required if you have a Ring Alarm hub or a Ring Beams (Smart Lighting) bridge
+- [ring-virtual-chime.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-chime.groovy) - Chime or Chime Pro
+- [ring-virtual-light-with-siren.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-light-with-siren.groovy) - Floodlight Cam, Spotlight Cam
+- [ring-virtual-light.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-light.groovy) - Spotlight Cam Battery (A few devices where the siren call is different and I haven't reverse engineered it yet.)
+- [ring-virtual-camera-with-siren.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-camera-with-siren.groovy) - Indoor Cam, Stick Up Cam
+- [ring-virtual-camera.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-camera.groovy) - Doorbells
 
 ## Children of the Ring API Virtual Device (websocket device) ##
 
 ### Ring Alarm ###
-- [ring-virtual-alarm-hub.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-alarm-hub.groovy) - Ring Alarm Hub.  Required to create alarm devices
-- [ring-virtual-alarm-range-extender.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-alarm-range-extender.groovy) - Range Extender (1st and 2nd Gen)
-- [ring-virtual-alarm-smoke-co-listener.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-alarm-smoke-co-listener.groovy) - Smoke/CO2 Listener
-- [ring-virtual-contact-sensor.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-contact-sensor.groovy) - Ring Alarm Contact Sensor (1st and 2nd Gen) and any Z-Wave (Ecolink) tilt sensor that connect to Ring Alarm.  Additionally used for contact sensors connected to the Retrofit Alarm Kit
-- [ring-virtual-motion-sensor.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-motion-sensor.groovy) - Ring Alarm Motion Sensor (1st or 2nd Gen)
-- [ring-virtual-flood-freeze-sensor.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-flood-freeze-sensor.groovy) Ring Flood & Freeze Sensor
-- [ring-virtual-keypad.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-keypad.groovy) - Ring Alarm Keypad (1st or 2nd Gen)
-- [ring-virtual-lock.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-lock.groovy) - Any Z-Wave lock that connects to Ring Alarm
-- [ring-virtual-siren.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-siren.groovy) - Any Z-wave (Dome) siren that conects to Ring Alarm
-- [ring-virtual-switch.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-switch.groovy) - Any Z-Wave switch that connects to Ring Alarm
-- [ring-virtual-smoke-alarm.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-smoke-alarm.groovy) Any Z-Wave (First-Alert) smoke detector that connects to Ring Alarm (First Alert)
-- [ring-virtual-co-alarm.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-co-alarm.groovy) Any Z-Wave (First Alert) CO detector that connects to Ring Alarm.  Note that these devices typically show as different devices on the Ring side so they show as different devices on the Hubitat side as well
-- [ring-virtual-retrofit-alarm-kit.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-keypad.groovy) - Ring Retrofit Alarm Kit
+- [ring-virtual-alarm-hub.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-alarm-hub.groovy) - Ring Alarm Hub.  Required to create alarm devices
+- [ring-virtual-alarm-range-extender.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-alarm-range-extender.groovy) - Range Extender (1st and 2nd Gen)
+- [ring-virtual-alarm-smoke-co-listener.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-alarm-smoke-co-listener.groovy) - Smoke/CO2 Listener
+- [ring-virtual-contact-sensor.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-contact-sensor.groovy) - Ring Alarm Contact Sensor (1st and 2nd Gen) and any Z-Wave (Ecolink) tilt sensor that connect to Ring Alarm.  Additionally used for contact sensors connected to the Retrofit Alarm Kit
+- [ring-virtual-motion-sensor.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-motion-sensor.groovy) - Ring Alarm Motion Sensor (1st or 2nd Gen)
+- [ring-virtual-flood-freeze-sensor.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-flood-freeze-sensor.groovy) Ring Flood & Freeze Sensor
+- [ring-virtual-keypad.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-keypad.groovy) - Ring Alarm Keypad (1st or 2nd Gen)
+- [ring-virtual-lock.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-lock.groovy) - Any Z-Wave lock that connects to Ring Alarm
+- [ring-virtual-siren.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-siren.groovy) - Any Z-wave (Dome) siren that conects to Ring Alarm
+- [ring-virtual-switch.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-switch.groovy) - Any Z-Wave switch that connects to Ring Alarm
+- [ring-virtual-smoke-alarm.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-smoke-alarm.groovy) Any Z-Wave (First-Alert) smoke detector that connects to Ring Alarm (First Alert)
+- [ring-virtual-co-alarm.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-co-alarm.groovy) Any Z-Wave (First Alert) CO detector that connects to Ring Alarm.  Note that these devices typically show as different devices on the Ring side so they show as different devices on the Hubitat side as well
+- [ring-virtual-retrofit-alarm-kit.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-keypad.groovy) - Ring Retrofit Alarm Kit
 
 ### Ring Security Lighting (Ring Bridge/Beams) ###
-- [ring-virtual-beams-bridge.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-beams-bridge.groovy) - Smart Lighting (Beams) bridge.  Required to create security lighting devices
-- [ring-virtual-beams-group.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-beams-group.groovy) - Smart Lighting Group
-- [ring-virtual-beams-light.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-beams-light.groovy) - Smart Lighting Light with Motion Sensor
-- [ring-virtual-beams-motion-sensor.groovy](https://github.com/codahq/ring_hubitat_codahq/blob/master/src/drivers/ring-virtual-beams-motion-sensor.groovy) - Smart Lighting Motion Sensor
+- [ring-virtual-beams-bridge.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-beams-bridge.groovy) - Smart Lighting (Beams) bridge.  Required to create security lighting devices
+- [ring-virtual-beams-group.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-beams-group.groovy) - Smart Lighting Group
+- [ring-virtual-beams-light.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-beams-light.groovy) - Smart Lighting Light with Motion Sensor
+- [ring-virtual-beams-motion-sensor.groovy](https://github.com/ardichoke/hubitat_ring_integration/blob/master/src/drivers/ring-virtual-beams-motion-sensor.groovy) - Smart Lighting Motion Sensor
 
 The app will create the camera, chime and doorbell devices automatically.  However, because it was far easier the security and beams devices are NOT created automatically via the app's discover devices functionality.  Once you add the "Ring API Virtual Device" from the app you must go and click "Create Devices" on your respective device to get its websocket children device(s) to create.  For example, if you have alarm devices go to the alarm hub device's edit page and click the "Create Devices" command.
 
@@ -91,3 +91,6 @@ The packages can be installed either manually or through the Hubitat Package Man
 - If it isn't connected, hit the "Initialize" command button
 - If it is connected, the API device should have up to two children devices already created.  If you have alarm devices, the alarm hub should be created.  If you have security lighting devices the beams bridge should be created.  Go to each of these devices and click its "Create Devices" command button.  This will automatically create the alarm and security devices.
 - At no point should you create a device yourself.  The only thing you need to create is the app instance.  The app and API device create everything else.
+
+The repository:
+https://github.com/ardichoke/hubitat_ring_integration
