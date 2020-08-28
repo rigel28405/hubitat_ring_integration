@@ -708,6 +708,7 @@ def getRINGABLES() {
     "doorbell_v5",
     "doorbell_portal",
     "doorbell_scallop_lite",
+    "doorbell_scallop",
     "lpd_v1",
     "lpd_v2",
     "jbox_v1"
@@ -733,6 +734,7 @@ private getDEVICE_TYPES() {
     "doorbell_v4": [name: "Ring Video Doorbell 2", driver: "Ring Virtual Camera", dingable: true],
     "doorbell_v5": [name: "Ring Video Doorbell 2", driver: "Ring Virtual Camera", dingable: true],
     "doorbell_scallop_lite": [name: "Ring Video Doorbell 3", driver: "Ring Virtual Camera", dingable: true],
+    "doorbell_scallop": [name: "Ring Video Doorbell 3 Plus", driver: "Ring Virtual Camera", dingable: true],
     "doorbell_portal": [name: "Ring Peephole Cam", driver: "Ring Virtual Camera", dingable: true],
     "lpd_v1": [name: "Ring Video Doorbell Pro", driver: "Ring Virtual Camera", dingable: true],
     "lpd_v2": [name: "Ring Video Doorbell Pro 2", driver: "Ring Virtual Camera", dingable: true],
