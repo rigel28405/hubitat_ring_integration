@@ -20,7 +20,7 @@
       "name": "Ring API Virtual Device",
       "namespace": "ring-hubitat-codahq",
       "location": "https://raw.githubusercontent.com/ardichoke/hubitat_ring_integration/master/src/drivers/ring-api-virtual-device.groovy",
-      "required": false
+      "required": true
     },
     {
       "id": "5bcdd988-ccec-4f4b-9fc1-90d820fda1af",
