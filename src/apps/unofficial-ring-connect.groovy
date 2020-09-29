@@ -1790,6 +1790,7 @@ def isOAuthEnabled() {
   "doorbell_portal",
   "doorbell_scallop",
   "doorbell_scallop_lite",
+  "cocoa_doorbell",
   "lpd_v1",
   "lpd_v2",
   "jbox_v1"
@@ -1814,6 +1815,7 @@ def isOAuthEnabled() {
   "doorbell_scallop_lite": [name: "Ring Video Doorbell 3", driver: "Ring Virtual Camera", dingable: true],
   "doorbell_scallop": [name: "Ring Video Doorbell 3 Plus", driver: "Ring Virtual Camera", dingable: true],
   "doorbell_portal": [name: "Ring Peephole Cam", driver: "Ring Virtual Camera", dingable: true],
+  "cocoa_doorbell": [name: "Ring Video Doorbell 2020", driver: "Ring Virtual Camera", dingable: true],
   "lpd_v1": [name: "Ring Video Doorbell Pro", driver: "Ring Virtual Camera", dingable: true],
   "lpd_v2": [name: "Ring Video Doorbell Pro 2", driver: "Ring Virtual Camera", dingable: true],
   "jbox_v1": [name: "Ring Video Doorbell Elite", driver: "Ring Virtual Camera", dingable: true],
