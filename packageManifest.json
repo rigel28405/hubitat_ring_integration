@@ -12,6 +12,7 @@
       "location": "https://raw.githubusercontent.com/ardichoke/hubitat_ring_integration/master/src/apps/unofficial-ring-connect.groovy",
       "required": true,
       "oauth": true,
+      "version": "0.3.3"
     }
   ],
   "drivers": [
