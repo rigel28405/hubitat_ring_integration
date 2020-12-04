@@ -1,10 +1,10 @@
 {
   "packageName": "Hubitat Ring Integration (Unofficial)",
   "author": "codahq",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "minimumHEVersion": "0.0",
-  "dateReleased": "2020-11-11",
-  "releaseNotes": "Fix bug where panic button devices wouldn't update", 
+  "dateReleased": "2020-12-01",
+  "releaseNotes": "Fix bug with data fields in hubitat v2.2.4",
   "apps": [
     {
       "id": "981fa0e5-b7c7-4459-a9ba-7ccdc51faa55",
@@ -13,7 +13,7 @@
       "location": "https://raw.githubusercontent.com/HubitatCommunity/hubitat_ring_integration/master/src/apps/unofficial-ring-connect.groovy",
       "required": true,
       "oauth": true,
-      "version": "0.3.3"
+      "version": "0.3.4"
     }
   ],
   "drivers": [

@@ -27,8 +27,7 @@
  *  2020-05-11: Support for non-alarm modes (Ring Modes)
  *              Changes to auto-create hub/bridge devices
  *              Optimization around uncreated devices
- *
- *
+ *  2020-12-01: Fix bug with how device data fields are set. Caused device commands to fail in hubitat v2.2.4
  */
 
 import groovy.json.JsonSlurper
@@ -761,21 +760,20 @@ def createDevice(deviceInfo) {
     //devices that have drivers that store in devices
     log.warn "Creating a ${DEVICE_TYPES[deviceInfo.deviceType].name} (${deviceInfo.deviceType}) with dni: ${getFormattedDNI(deviceInfo.zid)}"
     try {
-
-      def data = [
-        "zid": deviceInfo.zid,
-        "fingerprint": deviceInfo.fingerprint ?: "N/A",
-        "manufacturer": deviceInfo.manufacturerName ?: "Ring",
-        "serial": deviceInfo.serialNumber ?: "N/A",
-        "type": deviceInfo.deviceType,
-        "src": deviceInfo.src
-      ]
-      //if (sensor.general.v2.deviceType == "security-panel") {
-      //  data << ["hub-zid": hubNode.general.v2.zid]
-      //}
-
       d = addChildDevice("ring-hubitat-codahq", DEVICE_TYPES[deviceInfo.deviceType].name, getFormattedDNI(deviceInfo.zid), data)
       d.label = deviceInfo.name ?: DEVICE_TYPES[deviceInfo.deviceType].name
+
+      d.updateDataValue("zid",  deviceInfo.zid)
+      d.updateDataValue("fingerprint", deviceInfo.fingerprint ?: "N/A")
+      d.updateDataValue("manufacturer", deviceInfo.manufacturerName ?: "Ring")
+      d.updateDataValue("serial", deviceInfo.serialNumber ?: "N/A")
+      d.updateDataValue("type", deviceInfo.deviceType)
+      d.updateDataValue("src", deviceInfo.src)
+
+      //if (sensor.general.v2.deviceType == "security-panel") {
+      //  d.updateDataValue("hub-zid", hubNode.general.v2.zid)
+      //}
+
       log.warn "Successfully added ${deviceInfo.deviceType} with dni: ${getFormattedDNI(deviceInfo.zid)}"
     }
     catch (e) {
@@ -834,6 +832,18 @@ def sendUpdate(deviceInfo) {
   else {
     logDebug "Updating device ${d}"
     d.setValues(deviceInfo)
+
+    // Old versions set device data fields incorrectly. Hubitat v2.2.4 appears to clean up
+    // the bad data fields. Reproduce the necessary fields
+    if (d.getDataValue('zid') == null) {
+      log.warn "Device ${d} is missing 'zid' data field. Attempting to fix"
+      d.updateDataValue("zid",  deviceInfo.zid)
+      d.updateDataValue("fingerprint", deviceInfo.fingerprint ?: "N/A")
+      d.updateDataValue("manufacturer", deviceInfo.manufacturerName ?: "Ring")
+      d.updateDataValue("serial", deviceInfo.serialNumber ?: "N/A")
+      d.updateDataValue("type", deviceInfo.deviceType)
+      d.updateDataValue("src", deviceInfo.src)
+    }
   }
 }
 
