@@ -1,9 +1,10 @@
 {
   "packageName": "Hubitat Ring Integration (Unofficial)",
   "author": "codahq",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "minimumHEVersion": "0.0",
-  "dateReleased": "2020-08-29",
+  "dateReleased": "2020-11-11",
+  "releaseNotes": "Fix bug where panic button devices wouldn't update", 
   "apps": [
     {
       "id": "981fa0e5-b7c7-4459-a9ba-7ccdc51faa55",

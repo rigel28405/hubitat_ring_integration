@@ -896,6 +896,7 @@ def isHub(kind) {
   "range-extender.zwave": [name: "Ring Virtual Alarm Range Extender", hidden: false],
   "lock": [name: "Ring Virtual Lock", hidden: false],
   "security-keypad": [name: "Ring Virtual Keypad", hidden: false],
+  "security-panic": [name: "Ring Virtual Panic Button", hidden: false],
   "base_station_v1": [name: "Ring Virtual Alarm Hub", hidden: false],
   "siren": [name: "Ring Virtual Siren", hidden: false],
   "switch": [name: "Ring Virtual Switch", hidden: false],
