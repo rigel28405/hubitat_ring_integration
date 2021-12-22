@@ -18,10 +18,10 @@
  *  2019-11-15: Import URL
  *  2020-02-29: Added checkin event
  *              Changed namespace
- *
+ *  2021-08-16: Remove unnecessary safe object traversal
+ *              Reduce repetition in some of the code
  */
 
-import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 
 metadata {
@@ -30,7 +30,9 @@ metadata {
     capability "Refresh"
     capability "Sensor"
 
+    attribute "cellular", "string"
     attribute "lastCheckin", "string"
+    attribute "wifi", "string"
 
     command "createDevices"
   }
@@ -68,35 +70,65 @@ def setValues(deviceInfo) {
   logDebug "updateDevice(deviceInfo)"
   logTrace "deviceInfo: ${JsonOutput.prettyPrint(JsonOutput.toJson(deviceInfo))}"
 
-  if (deviceInfo.lastUpdate) {
-    state.lastUpdate = deviceInfo.lastUpdate
+  for(key in ['impulseType', 'lastCommTime', 'lastUpdate']) {
+    if (deviceInfo[key]) {
+      state[key] = deviceInfo[key]
+    }
   }
-  if (deviceInfo.impulseType) {
-    state.impulseType = deviceInfo.impulseType
-  }
+
   if (deviceInfo.deviceType == "halo-stats.latency" && deviceInfo.state?.status == "success") {
     sendEvent(name: "lastCheckin", value: convertToLocalTimeString(new Date()), displayed: false, isStateChange: true)
   }
-  if (deviceInfo.lastCommTime) {
-    state.signalStrength = deviceInfo.lastCommTime
-  }
-  if (deviceInfo.state?.networks?.wlan0) {
-    if (deviceInfo.state?.networks?.wlan0.ssid) {
-      state.network = deviceInfo.state?.networks?.wlan0.ssid
+  if (deviceInfo.state?.networks) {
+    def nw = deviceInfo.state.networks
+
+    if (nw.ppp0 != null) {
+      if (nw.ppp0?.type) {
+        device.updateDataValue("ppp0Type", nw.ppp0.type.capitalize())
+      }
+      if (nw.ppp0?.name) {
+        device.updateDataValue("ppp0Name", nw.ppp0.name)
+      }
+      if (nw.ppp0?.rssi) {
+        device.updateDataValue("ppp0Rssi", nw.ppp0.rssi.toString())
+      }
+
+      def type = device.getDataValue("ppp0Type")
+      def name = device.getDataValue("ppp0Name")
+      def rssi = device.getDataValue("ppp0Rssi")
+
+      logInfo "ppp0 ${type} ${name} RSSI ${RSSI}"
+      checkChanged('cellular', "${name} RSSI ${rssi}")
+      state.ppp0 = "${name} RSSI ${rssi}"
     }
-    if (deviceInfo.state?.networks?.wlan0.rssi) {
-      state.rssi = deviceInfo.state?.networks?.wlan0.rssi
+
+    if (nw.wlan0 != null) {
+      if (nw.wlan0?.type) {
+        device.updateDataValue("wlan0Type", nw.wlan0.type.capitalize())
+      }
+      if (nw.wlan0?.ssid) {
+        device.updateDataValue("wlan0Ssid", nw.wlan0.ssid)
+      }
+      if (nw.wlan0?.rssi) {
+        device.updateDataValue("wlan0Rssi", nw.wlan0.rssi.toString())
+      }
+
+      def type = device.getDataValue("wlan0Type")
+      def ssid = device.getDataValue("wlan0Ssid")
+      def rssi = device.getDataValue("wlan0Rssi")
+
+      logInfo "wlan0 ${type} ${ssid} RSSI ${RSSI}"
+      checkChanged('wifi', "${ssid} RSSI ${rssi}")
+      state.wlan0 = "${ssid} RSSI ${rssi}"
     }
   }
   if (deviceInfo.deviceType == "adapter.ringnet" && deviceInfo.state?.version) {
-    if (deviceInfo.state?.version?.nordicFirmwareVersion && device.getDataValue("nordicFirmwareVersion") != deviceInfo.state?.version?.nordicFirmwareVersion) {
-      device.updateDataValue("nordicFirmwareVersion", deviceInfo.state?.version?.nordicFirmwareVersion)
-    }
-    if (deviceInfo.state?.version?.buildNumber && device.getDataValue("buildNumber") != deviceInfo.state?.version?.buildNumber) {
-      device.updateDataValue("buildNumber", deviceInfo.state?.version?.buildNumber)
-    }
-    if (deviceInfo.state?.version?.softwareVersion && device.getDataValue("softwareVersion") != deviceInfo.state?.version?.softwareVersion) {
-      device.updateDataValue("softwareVersion", deviceInfo.state?.version?.softwareVersion)
+    def version = deviceInfo.state.version
+      
+    for(key in ['buildNumber', 'nordicFirmwareVersion', 'softwareVersion']) {
+      if (version[key] && device.getDataValue(key) != version[key]) {
+        device.updateDataValue(key, version[key])
+      }
     }
   }
   else if (deviceInfo.state?.version) {
@@ -106,10 +138,10 @@ def setValues(deviceInfo) {
   }
 }
 
-def checkChanged(attribute, newStatus) {
+def checkChanged(attribute, newStatus, unit=null) {
   if (device.currentValue(attribute) != newStatus) {
     logInfo "${attribute.capitalize()} for device ${device.label} is ${newStatus}"
-    sendEvent(name: attribute, value: newStatus)
+    sendEvent(name: attribute, value: newStatus, unit: unit)
   }
 }
 

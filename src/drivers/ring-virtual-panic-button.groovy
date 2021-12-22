@@ -1,5 +1,5 @@
 /**
- *  Ring Virtual CO Alarm
+ *  Ring Virtual Panic Button Driver
  *
  *  Copyright 2019 Ben Rimmasch
  *
@@ -14,20 +14,17 @@
  *
  *
  *  Change Log:
- *  2019-12-20: Initial
- *  2020-02-12: Fixed battery % to show correctly in dashboards
- *  2020-02-29: Changed namespace
- *  2021-08-16: Reduce repetition in some of the code
+ *  2020-08-16: Initial
  */
 
 metadata {
-  definition(name: "Ring Virtual CO Alarm", namespace: "ring-hubitat-codahq", author: "Ben Rimmasch",
-    importUrl: "https://raw.githubusercontent.com/codahq/ring_hubitat_codahq/master/src/drivers/ring-virtual-co-alarm.groovy") {
+  definition(name: "Ring Virtual Panic Button", namespace: "ring-hubitat-codahq", author: "Ben Rimmasch",
+    importUrl: "https://raw.githubusercontent.com/codahq/ring_hubitat_codahq/master/src/drivers/ring-virtual-panic-button.groovy") {
     capability "Refresh"
-    capability "Sensor"
     capability "Battery"
     capability "TamperAlert"
-    capability "CarbonMonoxideDetector" //carbonMonoxide - ENUM ["detected", "tested", "clear"]
+
+    attribute "lastCheckin", "string"
   }
 
   preferences {
@@ -58,11 +55,8 @@ def setValues(deviceInfo) {
   logDebug "updateDevice(deviceInfo)"
   logTrace "deviceInfo: ${deviceInfo}"
 
-  if (deviceInfo?.state?.co != null) {
-    def alarmStatus = deviceInfo.state.co.alarmStatus
-    checkChanged("carbonMonoxide", alarmStatus == "active" ? "detected" : (alarmStatus == "inactive" ? "clear" : "tested"))
-    if (deviceInfo.state.co.enabledTimeMs)
-      state.coEnabled = deviceInfo.state.co.enabledTimeMs
+  if (deviceInfo.state && deviceInfo.state.testMode != null) {
+    checkChanged("testMode", deviceInfo.state.testMode)
   }
   if (deviceInfo.batteryLevel != null) {
     checkChanged("battery", deviceInfo.batteryLevel, "%")
@@ -77,6 +71,10 @@ def setValues(deviceInfo) {
     }
   }
   
+  if (deviceInfo?.impulseType == "comm.heartbeat") {
+    sendEvent(name: "lastCheckin", value: convertToLocalTimeString(new Date()), displayed: false, isStateChange: true)
+  }
+  
   for(key in ['firmware', 'hardwareVersion']) {
     if (deviceInfo[key] && device.getDataValue(key) != deviceInfo[key]) {
       device.updateDataValue(key, deviceInfo[key])
@@ -88,5 +86,15 @@ def checkChanged(attribute, newStatus, unit=null) {
   if (device.currentValue(attribute) != newStatus) {
     logInfo "${attribute.capitalize()} for device ${device.label} is ${newStatus}"
     sendEvent(name: attribute, value: newStatus, unit: unit)
+  }
+}
+
+private convertToLocalTimeString(dt) {
+  def timeZoneId = location?.timeZone?.ID
+  if (timeZoneId) {
+    return dt.format("yyyy-MM-dd h:mm:ss a", TimeZone.getTimeZone(timeZoneId))
+  }
+  else {
+    return "$dt"
   }
 }
