@@ -2,7 +2,7 @@
   "packageName": "Hubitat Ring Integration (Unofficial)",
   "author": "codahq",
   "version": "0.4.0",
-  "betaVersion": "0.5.0.6",
+  "betaVersion": "0.5.0.7",
   "minimumHEVersion": "0.0",
   "dateReleased": "2022-01-20",
   "releaseNotes": "Add support for Chime V2 and Alarm Pro",
@@ -129,6 +129,14 @@
       "namespace": "ring-hubitat-codahq",
       "location": "https://raw.githubusercontent.com/HubitatCommunity/hubitat_ring_integration/v0.4.0/src/drivers/ring-virtual-flood-freeze-sensor.groovy",
       "betaLocation": "https://raw.githubusercontent.com/HubitatCommunity/hubitat_ring_integration/develop/src/drivers/ring-virtual-flood-freeze-sensor.groovy",
+      "required": false
+    },
+    {
+      "id": "fbbc678d-19a1-47d0-bb2d-2cd5c428c950",
+      "name": "Ring Virtual Glass Break Sensor",
+      "namespace": "ring-hubitat-codahq",
+      "location": "https://raw.githubusercontent.com/HubitatCommunity/hubitat_ring_integration/develop/src/drivers/ring-virtual-glass-break-sensor.groovy",
+      "betaLocation": "https://raw.githubusercontent.com/HubitatCommunity/hubitat_ring_integration/develop/src/drivers/ring-virtual-glass-break-sensor.groovy",
       "required": false
     },
     {
