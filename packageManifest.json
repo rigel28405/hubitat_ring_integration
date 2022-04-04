@@ -14,8 +14,7 @@
       "location": "https://raw.githubusercontent.com/HubitatCommunity/hubitat_ring_integration/v0.4.0/src/apps/unofficial-ring-connect.groovy",
       "betaLocation": "https://raw.githubusercontent.com/HubitatCommunity/hubitat_ring_integration/develop/src/apps/unofficial-ring-connect.groovy",
       "required": true,
-      "oauth": true,
-      "version": "0.4.0"
+      "oauth": true
     }
   ],
   "drivers": [
