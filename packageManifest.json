@@ -2,10 +2,10 @@
   "packageName": "Hubitat Ring Integration (Unofficial)",
   "author": "codahq",
   "version": "0.4.1",
-  "betaVersion": "0.5.0.14",
+  "betaVersion": "0.5.0.15",
   "minimumHEVersion": "0.0",
   "dateReleased": "2022-01-20",
-  "releaseNotes": "Add support for Chime V2 and Alarm Pro",
+  "releaseNotes": "Add support for Ring Video Doorbell 4 (Oyster) and Ring Video Doorbell Wired (Graham Cracker)",
   "apps": [
     {
       "id": "981fa0e5-b7c7-4459-a9ba-7ccdc51faa55",
