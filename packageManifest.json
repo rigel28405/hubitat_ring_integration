@@ -2,7 +2,7 @@
   "packageName": "Hubitat Ring Integration (Unofficial)",
   "author": "codahq",
   "version": "0.4.1",
-  "betaVersion": "0.5.0.15",
+  "betaVersion": "0.5.0.16",
   "minimumHEVersion": "0.0",
   "dateReleased": "2022-01-20",
   "releaseNotes": "Add support for Ring Video Doorbell 4 (Oyster) and Ring Video Doorbell Wired (Graham Cracker)",
