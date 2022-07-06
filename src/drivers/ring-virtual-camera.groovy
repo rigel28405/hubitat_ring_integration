@@ -40,15 +40,15 @@ metadata {
 }
 
 void logInfo(msg) {
-  if (descriptionTextEnable) log.info msg
+  if (descriptionTextEnable) { log.info msg }
 }
 
 void logDebug(msg) {
-  if (logEnable) log.debug msg
+  if (logEnable) { log.debug msg }
 }
 
 void logTrace(msg) {
-  if (traceLogEnable) log.trace msg
+  if (traceLogEnable) { log.trace msg }
 }
 
 def updated() {
@@ -98,18 +98,23 @@ void handleMotion(final Map msg) {
 
     runIn(60, motionOff) // We don't get motion off msgs from ifttt, and other motion only happens on a manual refresh
   }
-  else if(msg.motion == false) {
+  else if (msg.motion == false) {
     checkChanged("motion", "inactive")
     unschedule(motionOff)
   }
   else {
-    log.error ("handleMotion unsupported msg: ${msg}")
+    log.error("handleMotion unsupported msg: ${msg}")
   }
 }
 
 void handleRefresh(final Map msg) {
-  if (msg.battery_life != null && !["jbox_v1", "lpd_v1", "lpd_v2"].contains(device.getDataValue("kind"))) {
-    checkChanged("battery", msg.battery_life, '%')
+  if (!["jbox_v1", "lpd_v1", "lpd_v2"].contains(device.getDataValue("kind"))) {
+    if (msg.battery_life != null) {
+      checkChanged("battery", msg.battery_life, '%')
+    }
+    else if (msg.battery_life_2 != null) {
+      checkChanged("battery", msg.battery_life_2, "%")
+    }
   }
 
   if (msg.health) {
