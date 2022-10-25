@@ -2,7 +2,7 @@
   "packageName": "Hubitat Ring Integration (Unofficial)",
   "author": "codahq",
   "version": "0.5.3",
-  "betaVersion": "0.5.3",
+  "betaVersion": "0.5.4",
   "minimumHEVersion": "0.0",
   "dateReleased": "2022-07-06",
   "releaseNotes": "Fix refresh error in ring-api-virtual-device when no hubs are defined\nAdd support for battery_life_2 source as fallback for battery_life in all virtual camera/light devices",
