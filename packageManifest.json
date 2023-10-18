@@ -2,7 +2,7 @@
   "packageName": "Hubitat Ring Integration (Unofficial)",
   "author": "codahq",
   "version": "0.5.4",
-  "betaVersion": "0.6.0.0",
+  "betaVersion": "0.6.0.1",
   "minimumHEVersion": "0.0",
   "dateReleased": "2022-07-06",
   "releaseNotes": "Add support for cocoa_spotlight, cocoa_doorbell_v2, and ring light transformer",
