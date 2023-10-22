@@ -514,9 +514,14 @@ def addDevices() {
 
   Set<Integer> enabledHubDoorbotIds = [].toSet()
 
-  for(final String id in selectedDevices) {
+  for (final String id in selectedDevices) {
     Map selectedDevice = devices.find { it.id == id }
     logTrace "addDevices: Selected id ${id}, Selected device ${selectedDevice}"
+
+    if (!selectedDevice) {
+      log.error("addDevices: Error adding device id: '${id}'. Available devices: ${devices}")
+      return
+    }
 
     final Integer selectedDeviceId = selectedDevice.id
 
@@ -568,7 +573,7 @@ def addDevices() {
         }
       }
     }
-  
+
     if (!isHubDevice) {
       d?.updateDataValue("kind", kind)
       d?.updateDataValue("kind_name", deviceType.name)
