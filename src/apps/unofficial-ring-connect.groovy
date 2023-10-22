@@ -519,8 +519,10 @@ def addDevices() {
     logTrace "addDevices: Selected id ${id}, Selected device ${selectedDevice}"
 
     if (!selectedDevice) {
-      log.error("addDevices: Error adding device id: '${id}'. Available devices: ${devices}")
-      return
+      final String tmpMsg = "addDevices: Error adding device id: '${id}'. Available devices: ${devices}"
+      log.error(tmpMsg)
+      sectionText += tmpMsg
+      continue
     }
 
     final Integer selectedDeviceId = selectedDevice.id
@@ -532,7 +534,7 @@ def addDevices() {
       final String tmpMsg = "addDevices: Error adding device '${selectedDevice.name}'. Kind '${kind}' is not supported"
       log.error(tmpMsg)
       sectionText += tmpMsg
-      return
+      continue
     }
 
     boolean isHubDevice = false
