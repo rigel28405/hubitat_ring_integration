@@ -1691,7 +1691,7 @@ String getRingDeviceId(String id) {
 
 @Field final static String CLIENTS_API_BASE_URL = 'https://api.ring.com/clients_api'
 @Field final static String DEVICES_API_BASE_URL = 'https://api.ring.com/devices/v1'
-@Field final static String APP_API_BASE_URL = 'https://app.ring.com/api/v1'
+@Field final static String APP_API_BASE_URL = 'https://prd-api-us.prd.rings.solutions/api/v1'
 
 @Field final static String RING_API_DNI = "WS_API_DNI"
 @Field final static String JSON = 'application/json'
