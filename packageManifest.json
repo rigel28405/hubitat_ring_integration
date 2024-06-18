@@ -2,7 +2,7 @@
   "packageName": "Hubitat Ring Integration (Unofficial)",
   "author": "codahq",
   "version": "0.5.8",
-  "betaVersion": "0.6.0.2",
+  "betaVersion": "0.6.0.3",
   "minimumHEVersion": "0.0",
   "dateReleased": "2024-06-18",
   "releaseNotes": "Fix apiRequestTickets 500 error",
